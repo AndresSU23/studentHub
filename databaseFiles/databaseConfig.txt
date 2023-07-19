@@ -1,0 +1,25 @@
+The MySQL database is hosted at https://planetscale.com/ and contains the following schema:
+
+CREATE TABLE IF NOT EXISTS login(user_id int primary key, username varchar(35), password_hash varchar(32), hashed_salt varchar(32));
+
+CREATE TABLE IF NOT EXISTS users(user_id int primary key, first_name varchar(35), middle_name varchar(35), last_name varchar(35), birthdate date, blood_type char(3), email varchar(40), contact_number varchar(20), address varchar(250), extra varchar(250));
+
+CREATE TABLE IF NOT EXISTS admins(user_id int, admin_id int primary key, permission_level char(1));
+
+CREATE TABLE IF NOT EXISTS classrooms(class char(2), section char(1), teacher_id int, CONSTRAINT classroom_id PRIMARY KEY(class, section));
+
+CREATE TABLE students(user_id int, student_id int primary key, class char(2), section char(1));
+
+CREATE TABLE IF NOT EXISTS teachers(user_id int, teacher_id int primary key, class char(2), section char(1));
+
+CREATE TABLE IF NOT EXISTS schedules(schedule_id int primary key, monday varchar(35), tuesday varchar(35), wednesday varchar(35), thursday varchar(35), friday varchar(35), saturday varchar(35), sunday varchar(35));
+
+CREATE TABLE IF NOT EXISTS gradebook(student_id int, assignment_id int, course_id int ,grade decimal(6,3), comments varchar(250), CONSTRAINT gradebook_id PRIMARY KEY(student_id, assignment_id));
+
+CREATE TABLE IF NOT EXISTS courses(course_id int primary key, course_name varchar(50), section char(3), teacher_id int, schedule_id int, course_length char(3));
+
+CREATE TABLE IF NOT EXISTS assignments(assignment_id int primary key, course_id int, title varchar(50), weightage decimal(6,3));
+
+
+
+
