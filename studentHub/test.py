@@ -21,3 +21,7 @@ with connection:
         cursor.execute(sql)
         result = cursor.fetchall()
         print(result)
+
+
+#get- username, password
+#return- char (t,s,a,NULL) 
