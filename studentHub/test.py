@@ -24,4 +24,4 @@ with connection:
 
 
 #get- username, password
-#return- char (t,s,a,NULL) 
+#return- char (t,s,a,NULL)
