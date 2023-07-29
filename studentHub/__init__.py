@@ -15,10 +15,13 @@ def login():
        if (username==None or password==None or username=='' or password==''):
            error = 'Invalid Input, Try Again'
        else:
-           match (dbu.loginVerification(username, password)):
-               case 0:
+           user_type, first_name = dbu.loginVerification(username, password)  #user_type, first_name
+           match (user_type):
+               case 'S':
+                   #print(dbu.getStudent(username).user_type)
+                   print(dbu.userLogins[username].user_type)
                    return redirect(url_for('studentHome', username=username))
-               case -1:
+               case 'E':
                    error = 'Invalid Credentials, Try Again'
     return render_template("login.html",error = error)
  
