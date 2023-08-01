@@ -8,6 +8,7 @@ def home():
 
 @app.route('/login', methods =["GET", "POST"])
 def login():
+    global username
     error = None
     if request.method == "POST":
        username = request.form.get("username")
@@ -18,7 +19,6 @@ def login():
            user_type, first_name = dbu.loginVerification(username, password)  #user_type, first_name
            match (user_type):
                case 'S':
-                   #print(dbu.getStudent(username).user_type)
                    print(dbu.userLogins[username].user_type)
                    return redirect(url_for('studentHome', username=username))
                case 'E':
@@ -27,7 +27,7 @@ def login():
  
 @app.route('/studentHome/<username>', methods = ["GET", "POST"]) 
 def studentHome(username):
-    name = dbu.getUserFullNameByUsername(username=username)
+    name = dbu.userLogins[username].first_name
     return render_template("studentHome.html",username=username, name=name)
 
 @app.route('/studentHome/<username>/classesMenu', methods = ["GET", "POST"]) 
