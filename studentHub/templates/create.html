@@ -8,20 +8,13 @@
 
 <body>
     <h1><i> Welcome to the School Login</i></h1>
-    <p>Please Enter your login information</p>
     <div class="container">
-        <h1>Please login</h1>
+        <h1>Please Enter your User information</h1>
         <br>
-        <form action="/login" method="post">
+        <form action="/createuser" method="post">
             <input type="text" placeholder="Username" name="username">
             <input type="password" placeholder="Password" name="password">
-            <input class="button" type="submit" value="login">
-        </form>
-        {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}
-        {% endif %}
-        <form action="/create" method="post">
-            <input class="button" type="submit" value="Create New User">
+            <input class="button" type="submit" value="create">
         </form>
         {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}

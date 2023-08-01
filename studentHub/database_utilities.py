@@ -59,17 +59,6 @@ def passwordVerification(username, hashedPass):
         return 1
     else:
         return 0
-
-def accountCreation(username, password):
-    hashedPass = hashlib.sha256(password.encode('utf-8')).hexdigest()
-    password = "urmum"
-    cursor.execute(f"select user_id from login where username = '{username}'")
-    if(cursor.fetchall() == ()):
-        salt = os.urandom(32)
-        storedSalt = hashlib.sha256(salt).hexdigest()[:32]
-        storedPass = hashlib.pbkdf2_hmac('sha256', hashedPass.encode('utf-8'), storedSalt.encode('utf-8'), 100000).hex()[:32]
-        #cursor.execute(f"update login set password_hash = '{storedPass}', hashed_salt = '{storedSalt}' where username='{username}'")    
-
     
 def updatePassword(username, password):
     hashedPass = hashlib.sha256(password.encode('utf-8')).hexdigest()
@@ -90,11 +79,10 @@ def studentCreation(username):
     student = Student(userData[0])
     userLogins[userData[0]['username']] = student
 
-def getUserFullNameByUsername(username):
-    return "Michael"
 
 if __name__ == '__main__':
-    #updatePassword("shrey","test101")
+    pass
+    #updatePassword("shrey","test111")
     #loginVerification("shrey", "asdfh")
 
 
