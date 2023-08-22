@@ -79,6 +79,51 @@ def studentCreation(username):
     student = Student(userData[0])
     userLogins[userData[0]['username']] = student
 
+def dataNameValidation(firstName, middleName, lastName):
+    if firstName == None or middleName == None or lastName == None:
+        return "One of the names is invalid"
+    return None
+
+def dataEmailValidation(email):
+    if email == None:
+        return "The email was not valid"
+    return None
+
+def dataAddressValidation(address):
+    if address == None:
+        return "The address was not valid"
+    return None
+
+def dataNumberValidation(number):
+    if number == None:
+        return "The number was not valid"
+    return None
+
+def dataExtraValidation(extra):
+    if extra == None:
+        return "The email was not valid"
+    return None
+
+def updateUserFirstName(username, firstName):
+    pass
+
+def updateUserMiddleName(username, middleName):
+    pass
+
+def updateUserLastName(username, lastName):
+    pass
+
+def updateUserEmail(username, email):
+    pass
+
+def updateUserNumber(username, number):
+    pass
+
+def updateUserAddress(username, address):
+    pass
+
+def updateUserExtraInfo(username, extra):
+    pass
 
 if __name__ == '__main__':
     pass

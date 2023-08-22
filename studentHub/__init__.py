@@ -44,7 +44,7 @@ def gradesMenu(username):
     return f"<html><body> <h1>Grades Menu from student {username}</h1></body></html>"
 
 @app.route('/studentHome/<username>/infoMenu', methods = ["GET", "POST"]) 
-def infoMenu(username):
+def infoMenu(username, error = None):
     if username in dbu.userLogins:
         test = request.form.get("extra")
         print(test)
@@ -57,7 +57,8 @@ def infoMenu(username):
                                                email="sanchez@gmail.com",
                                                number="3264 684 565",
                                                address="Cra70 no 22 75",
-                                               extra="He has a peanut allergy")
+                                               extra="He has a peanut allergy",
+                                               error = error)
     else:
         return f"<html><body> <h1>You are not logged in <br><a href = '/login'>click here to log in</a></h1></body></html>" 
 
@@ -66,6 +67,50 @@ def infoMenu(username):
 def logout(username):
     del dbu.userLogins[username]
     return redirect(url_for('login'))
+
+@app.route('/loadNameInfo', methods = ["GET", "POST"]) 
+def loadNameInfo(username, firstName, middleName, lastName):
+    error = dbu.dataNameValidation(firstName, middleName, lastName)
+    if (error == None):
+        dbu.userLogins[username]['first_name'] = firstName
+        #Repeat with middleName
+        #Repeat with LastName
+        dbu.updateUserFirstName(username, firstName)
+        dbu.updateUserMiddleName(username, middleName)
+        dbu.updateUserLastName(username, lastName)
+    return redirect(url_for('/studentHome/<username>/infoMenu', username=username, error = error))
+    
+@app.route('/loadEmailInfo', methods = ["GET", "POST"]) 
+def loadEmailInfo(username, email):
+    error = dbu.dataEmailValidation(email)
+    if (error == None):
+        #Alter the Email value in login user with username
+        dbu.updateUserEmail(username, email)
+    return redirect(url_for('/studentHome/<username>/infoMenu', username=username, error = error))
+
+@app.route('/loadNumberInfo', methods = ["GET", "POST"]) 
+def loadNumberInfo(username, number):
+    error = dbu.dataNumberValidation(number)
+    if (error == None):
+        #Alter the number value in login user with username
+        dbu.updateUserNumber(username, number)
+    return redirect(url_for('/studentHome/<username>/infoMenu', username=username, error = error))
+
+@app.route('/loadAddressInfo', methods = ["GET", "POST"]) 
+def loadAddressInfo(username, address):
+    error = dbu.dataAddressValidation(address)
+    if (error == None):
+        #Alter the address value in login user with username
+        dbu.updateUserAddress(username, address)
+    return redirect(url_for('/studentHome/<username>/infoMenu', username=username, error = error))
+
+@app.route('/loadExtraInfo', methods = ["GET", "POST"]) 
+def loadExtraInfo(username, extra):
+    error = dbu.dataExtraValidation(extra)
+    if (error == None):
+        #Alter the extra value in login user with username
+        dbu.updateUserExtraInfo(username, extra)
+    return redirect(url_for('/studentHome/<username>/infoMenu', username=username, error = error))
 
 if __name__=='__main__':
    app.run(debug=True)

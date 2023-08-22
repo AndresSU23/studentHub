@@ -3,19 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="popUp.js"></script>
-    <link rel="stylesheet" href="popUpform.css">
+    <script type="text/javascript" src="config_userInfo.js"></script>
+    <link rel="stylesheet" href="style_userInfo.css">
     <title>User Info</title>
 </head>
 
 <body>
     <h1><i>User {{username}} Personal information</i></h1>
+    {% if error %}
+    <p class="error"><strong>Error:</strong> {{ error }}
+    {% endif %}
     <table style="height: 309px; margin-left: auto; margin-right: auto; border: none; width: 613px;" cellspacing="0"
         cellpadding="0">
         <tbody>
             <tr style="height: 17.575px;">
                 <td style="width: 44.675px; height: 32px;">&nbsp;
-                    <button class="open-button" onclick="openNameForm()">Edit</button></td>
+                <button class="open-button" onclick="openNameForm()">Edit</button></td>
                 <td style="width: 129.863px; height: 17.575px;">&nbsp;First Name:</td>
                 <td style="width: 165.6px; height: 17.575px;"><p>&nbsp;{{firstName}}</p></td>
 
@@ -68,8 +71,8 @@
     </table>
 
     <!-- Name Form -->
-    <div class="popUpForm" id="nameForm">
-        <form action="/action_page.php" class="form-container">
+    <div class="form-popup" id="nameForm">
+        <form action="{{ url_for('loadNameInfo', username=username) }}" class="form-container">
             <h1>Update Name Information</h1>
 
             <label for="text"><b>First Name</b></label>
@@ -87,8 +90,8 @@
     </div>
 
     <!-- Email Form -->
-    <div class="popUpForm" id="emailForm">
-        <form action="/action_page.php" class="form-container">
+    <div class="form-popup" id="emailForm">
+        <form action="{{ url_for('loadEmailInfo', username=username) }}" class="form-container">
             <h1>Update Email Information</h1>
     
             <label for="text"><b>Email</b></label>
@@ -100,8 +103,8 @@
     </div>
 
     <!-- Address Form -->
-    <div class="popUpForm" id="addressForm">
-        <form action="/action_page.php" class="form-container">
+    <div class="form-popup" id="addressForm">
+        <form action="{{ url_for('loadAddressInfo', username=username) }}" class="form-container">
             <h1>Update Address Information</h1>
     
             <label for="text"><b>Address</b></label>
@@ -113,8 +116,8 @@
     </div>
 
     <!-- Number Form -->
-    <div class="popUpForm" id="numberForm">
-        <form action="/action_page.php" class="form-container">
+    <div class="form-popup" id="numberForm">
+        <form action="{{ url_for('loadNumberInfo', username=username) }}" class="form-container">
             <h1>Update Contact Number Information</h1>
     
             <label for="text"><b>Contact Number</b></label>
@@ -126,8 +129,8 @@
     </div>
 
     <!-- Extra Form -->
-    <div class="popUpForm" id="extraForm">
-        <form action="/action_page.php" class="form-container">
+    <div class="form-popup" id="extraForm">
+        <form action="{{ url_for('loadExtraInfo', username=username) }}" class="form-container">
             <h1>Update Additional Information</h1>
     
             <label for="text"><b>Additional Information</b></label>
