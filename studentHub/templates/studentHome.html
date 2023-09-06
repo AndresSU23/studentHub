@@ -11,7 +11,7 @@
     <p>Hey, there {{name}}</p>
     <p>What do you want to do?</p>
     <p><a href="{{ url_for('classesMenu', username=username) }}"><button class="grey" style="height: 75px; width: 150px;">My Classes</button></a></p>
-    <p><a href="{{ url_for('gradesMenu', username=username) }}"><button class="grey" style="height: 75px; width: 150px;">My Grades</button></a></p>
+    <p><a href="{{ url_for('studentSchedule', username=username) }}"><button class="grey" style="height: 75px; width: 150px;">My Schedule</button></a></p>
     <p><a href="{{ url_for('infoMenu', username=username) }}"><button class="grey" style="height: 75px; width: 150px;">My Info</button></a></p>
     <p><a href="{{ url_for('logout', username=username) }}"><button class="grey" style="height: 75px; width: 150px;">Log Out</button></a></p>
 

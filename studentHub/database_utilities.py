@@ -125,6 +125,47 @@ def updateUserAddress(username, address):
 def updateUserExtraInfo(username, extra):
     pass
 
+def getAssignmentsByCourseId(course_id):
+    assignments = [
+    {
+        "name": "Milestone",
+        "weight": "30",
+        "grade": "20",
+        "comments": "Not good enough"
+    },
+    {
+        "name": "FInalExam",
+        "weight": "70",
+        "grade": "25",
+        "comments": "Good enough"
+    }              
+    ]
+    return assignments
+
+def getCoursesByUserId(user_id):
+    courses = [
+        {
+            "name": "ULI101",
+            "section": "NBB",
+            "teacher": "Jhon Sellens",
+            "schedule": ["","9:30-11:30","","","","","",],
+            "length": "8",
+            "assignments": getAssignmentsByCourseId(89)
+        },
+        {
+            "name": "IPC144",
+            "section": "NGG",
+            "teacher": "Gayan Gamage",
+            "schedule": ["","10:20-12:00","","","13:00-15:30","","",],
+            "length": "8",
+            "assignments": getAssignmentsByCourseId(89)
+        }
+    ]
+    return courses
+
+def getFullScheduleByUserId(user_id):
+    pass
+
 if __name__ == '__main__':
     pass
     #updatePassword("shrey","test111")

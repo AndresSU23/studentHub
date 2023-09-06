@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="config_userInfo.js"></script>
-    <link rel="stylesheet" href="style_userInfo.css">
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/popUpInfoForm.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style_userInfo.css') }}">
     <title>User Info</title>
 </head>
 
@@ -64,25 +64,29 @@
                 <td style="width: 611.4px; height: 32px;" colspan="6">&nbsp;Additional Information:</td>
             </tr>
             <tr style="height: 32px;">
-                <td style="width: 44.675px; height: 32px;">&nbsp;{{extra}}</td>
-                <td style="width: 611.4px; height: 32px;" colspan="6">&nbsp;</td>
+                <td style="width: 44.675px; height: 32px;" colspan="7">&nbsp;{{extra}}</td>
             </tr>
         </tbody>
     </table>
+    <form action= "{{ url_for('studentHome', username=username) }}">
+        <input type="submit" value="Go back Home Page" />
+    </form>
 
     <!-- Name Form -->
     <div class="form-popup" id="nameForm">
-        <form action="{{ url_for('loadNameInfo', username=username) }}" class="form-container">
+        <form action="{{ url_for('loadNameInfo')}}" class="form-container">
             <h1>Update Name Information</h1>
 
+            <input type="hidden" placeholder="username" name="username" value={{username}} />
+
             <label for="text"><b>First Name</b></label>
-            <input type="text" placeholder={{firstName}} name="firstName" required>
+            <input type="text" placeholder="firstName" name="firstName" required>
 
             <label for="text"><b>Middle Name</b></label>
-            <input type="text" placeholder={{middleName}} name="middleName" required>
+            <input type="text" placeholder="middleName" name="middleName" required>
 
             <label for="text"><b>Last Name</b></label>
-            <input type="text" placeholder={{lastName}} name="lastName" required>
+            <input type="text" placeholder="lastName" name="lastName" required>
 
             <button type="submit" class="btn">Update</button>
             <button type="button" class="btn cancel" onclick="closeNameForm()">Close</button>
@@ -91,9 +95,11 @@
 
     <!-- Email Form -->
     <div class="form-popup" id="emailForm">
-        <form action="{{ url_for('loadEmailInfo', username=username) }}" class="form-container">
+        <form action="{{ url_for('loadEmailInfo') }}" class="form-container">
             <h1>Update Email Information</h1>
     
+            <input type="hidden" placeholder="username" name="username" value={{username}} />
+
             <label for="text"><b>Email</b></label>
             <input type="email" placeholder={{email}} name="email" required>
     
@@ -104,8 +110,10 @@
 
     <!-- Address Form -->
     <div class="form-popup" id="addressForm">
-        <form action="{{ url_for('loadAddressInfo', username=username) }}" class="form-container">
+        <form action="{{ url_for('loadAddressInfo') }}" class="form-container">
             <h1>Update Address Information</h1>
+
+            <input type="hidden" placeholder="username" name="username" value={{username}} />
     
             <label for="text"><b>Address</b></label>
             <input type="text" placeholder={{address}} name="address" required>
@@ -117,8 +125,10 @@
 
     <!-- Number Form -->
     <div class="form-popup" id="numberForm">
-        <form action="{{ url_for('loadNumberInfo', username=username) }}" class="form-container">
+        <form action="{{ url_for('loadNumberInfo') }}" class="form-container">
             <h1>Update Contact Number Information</h1>
+
+            <input type="hidden" placeholder="username" name="username" value={{username}} />
     
             <label for="text"><b>Contact Number</b></label>
             <input type="cel" placeholder={{number}} name="number" required>
@@ -130,8 +140,10 @@
 
     <!-- Extra Form -->
     <div class="form-popup" id="extraForm">
-        <form action="{{ url_for('loadExtraInfo', username=username) }}" class="form-container">
+        <form action="{{ url_for('loadExtraInfo') }}" class="form-container">
             <h1>Update Additional Information</h1>
+
+            <input type="hidden" placeholder="username" name="username" value={{username}} />
     
             <label for="text"><b>Additional Information</b></label>
             <input type="text" placeholder={{extra}} name="extra" required>
